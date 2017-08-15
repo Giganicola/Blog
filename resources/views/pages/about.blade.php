@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">About {{ $data['fullname'] }}</div>
+                <p>Email: {{ $data['email'] }}</p>
             </div>
         </div>
     </body>
