@@ -1,45 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('main')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title', '| Contact')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Contact</h1>
+            <form>
+                <div class="form-group">
+                    <label name="email">Email:</label>
+                    <input id="email" name="email" class="form-control">
+                </div>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+                <div class="form-group">
+                    <label name="subject">Subject:</label>
+                    <input id="subject" name="subject" class="form-control">
+                </div>   
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+                <div class="form-group">
+                    <label name="message">Message:</label>
+                    <textarea id="message" name="message" class="form-control">Type your message here.. </textarea>
+                </div>     
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Contact</div>
-            </div>
+                <input type="submit" value="Send Message" class="btn btn-success">
+            </form>
         </div>
-    </body>
-</html>
+    </div>  
+@endsection
+    
+    
