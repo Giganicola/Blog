@@ -19,7 +19,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // create a variable and store all the blog posts in it from the database
+        $posts = Post::all();
+      
+        //return a view and pass in the above variable
+        return view('posts.index')->withPosts($posts);
+      
     }
 
     /**
@@ -70,7 +75,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        $post = Post::find($id); 
+        return view('posts.show')->withPost($post);
     }
 
     /**
@@ -81,7 +87,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->withPost($post);
     }
 
     /**
@@ -93,7 +100,25 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the data 
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'body'  => 'required'
+        ));
+      
+        // Save data to database
+        $post = Post::find($id);
+        
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+      
+        $post->save();
+
+        // Set flash data with success message
+        Session::flash('success', 'This post was successfully saved.');
+      
+        // redirect to another page
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
