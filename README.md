@@ -1,2 +1,2 @@
 # Blog
-Blog using Laravel 5
+Complete blog with authentication created using Laravel 5
