@@ -20,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         // create a variable and store all the blog posts in it from the database
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
       
         //return a view and pass in the above variable
         return view('posts.index')->withPosts($posts);
@@ -50,6 +50,7 @@ class PostController extends Controller
         // If validation fails Laravel redirects back where the call came from --> Create)
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body'  => 'required'
         ));
       
@@ -57,6 +58,7 @@ class PostController extends Controller
         $post = new Post;
         
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
       
         $post->save();
@@ -101,15 +103,26 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the data 
+        $post = Post::find($id);
+      
+        if ($request->input('slug') == $post->slug) {
+            $this->validate($request, array(
+                'title' => 'required|max:255',
+                'body'  => 'required'
+            ));     
+        } else {
         $this->validate($request, array(
-            'title' => 'required|max:255',
-            'body'  => 'required'
-        ));
+                'title' => 'required|max:255',
+                'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'body'  => 'required'
+            ));
+        }
       
         // Save data to database
         $post = Post::find($id);
         
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
       
         $post->save();

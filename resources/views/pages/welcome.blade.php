@@ -15,35 +15,18 @@
 
     <div class="row"> 
         <div class="col-md-8">  
-            <div class="post">
-            <h3>Post title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quidem quo autem magnam voluptate in consequatur similique, impedit porro nam ullam reprehenderit dicta adipisci nulla saepe quos, earum rerum minima.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-            </div>
 
-            <hr>  
+            @foreach($posts as $post)
+          
+                <div class="post">
+                  <h3>{{ substr($post->title, 0, 50) }} {{ strlen($post->body) > 50 ? "..." : "" }}</h3>
+                  <p>{{ substr($post->body, 0, 300) }} {{ strlen($post->body) > 300 ? "..." : "" }}</p>
+                  <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary">Read more</a>
+                </div>
 
-            <div class="post">
-            <h3>Post title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quidem quo autem magnam voluptate in consequatur similique, impedit porro nam ullam reprehenderit dicta adipisci nulla saepe quos, earum rerum minima.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-            </div>
+                <hr>
+            @endforeach
 
-            <hr>
-
-            <div class="post">
-            <h3>Post title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quidem quo autem magnam voluptate in consequatur similique, impedit porro nam ullam reprehenderit dicta adipisci nulla saepe quos, earum rerum minima.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-            </div>
-
-            <hr>
-
-            <div class="post">
-            <h3>Post title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae quidem quo autem magnam voluptate in consequatur similique, impedit porro nam ullam reprehenderit dicta adipisci nulla saepe quos, earum rerum minima.</p>
-            <a href="#" class="btn btn-primary">Read more</a>
-            </div>
         </div>
 
         <div class="col-md-3 col-md-offset-1">
