@@ -12,7 +12,7 @@
               {{ Form::email('email', null, ['class' => 'form-control']) }}
         
               {{ Form::label('password', 'Password:') }}
-              {{ Form::password('email', ['class' => 'form-control']) }}
+              {{ Form::password('password', ['class' => 'form-control']) }}
         
               <br>
               {{ Form::label('remember', 'Remember me:') }}
