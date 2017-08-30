@@ -20,10 +20,13 @@ Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getL
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-//Password reset
+// Password reset
 Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\PasswordController@reset');
+
+// Categories
+Route::resource('categories', 'CategoryController');
 
 // Standard routes
 Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
