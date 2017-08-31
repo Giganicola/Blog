@@ -1,2 +1,2 @@
 <hr>
-<p>Footer</p>
+<p>2017 - Blog with Laravel</p>
