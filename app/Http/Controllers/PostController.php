@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use App\Category;
 use Session;
 
@@ -42,7 +43,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -53,6 +55,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+      
         // Validate the data 
         // With Laravel 5 everything underneath validation doesn't go throught
         // If validation fails Laravel redirects back where the call came from --> Create)
@@ -72,6 +75,8 @@ class PostController extends Controller
         $post->body = $request->body;
       
         $post->save();
+      
+        $post->tags()->sync($request->tags, false);
       
         Session::flash('success','The blog post was successfully saved!');
       
@@ -101,6 +106,7 @@ class PostController extends Controller
     {
         // find the post in the database and save as var
         $post = Post::find($id);
+        $tag = Post::find($id);
         $categories = Category::all();
         $cats = array();  
       

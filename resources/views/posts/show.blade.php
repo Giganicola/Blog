@@ -9,6 +9,15 @@
   <div class="row">
     <div class="col-md-8">
         <p class="lead">{{ $post->body }}</p>
+      
+        <hr>
+        
+        <div class="tags">
+        @foreach ($post->tags as $tag)
+            <span class="label label-default">{{ $tag->name }}</span>
+        @endforeach
+          <hr>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="well">
