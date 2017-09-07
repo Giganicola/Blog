@@ -164,9 +164,7 @@ class PostController extends Controller
             $post->tags()->sync($request->tags);  
         } else {
             $post->tags()->sync(array());
-        }
-      
-        
+        }       
 
         // Set flash data with success message
         Session::flash('success', 'This post was successfully saved.');
