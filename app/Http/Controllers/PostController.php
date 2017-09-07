@@ -106,15 +106,21 @@ class PostController extends Controller
     {
         // find the post in the database and save as var
         $post = Post::find($id);
-        $tag = Post::find($id);
         $categories = Category::all();
         $cats = array();  
-      
         foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
         }
+      
+        // create the associative array for the form
+        $tags = Tag::all();
+        $tags2 = array();
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+      
         // return the view passing the var we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
     /**
@@ -153,6 +159,14 @@ class PostController extends Controller
         $post->body = $request->input('body');
       
         $post->save();
+        
+        if (isset($request->tags)) {
+            $post->tags()->sync($request->tags);  
+        } else {
+            $post->tags()->sync(array());
+        }
+      
+        
 
         // Set flash data with success message
         Session::flash('success', 'This post was successfully saved.');
