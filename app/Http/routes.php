@@ -31,11 +31,14 @@ Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 // Tags
 Route::resource('tags', 'TagController', ['except' => ['create']]);
 
+// Comments
+Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+
 // Standard routes
 Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']) ;
-Route::get('contact', ['uses' => 'PagesController@getContact', 'as' => 'contact']);
-Route::post('contact', 'PagesController@postContact');
-Route::get('about', 'PagesController@getAbout');
-Route::get('/', 'PagesController@getIndex');
+Route::get('contact', ['uses' => 'PageController@getContact', 'as' => 'contact']);
+Route::post('contact', 'PageController@postContact');
+Route::get('about', 'PageController@getAbout');
+Route::get('/', 'PageController@getIndex');
 Route::resource('posts', 'PostController');
