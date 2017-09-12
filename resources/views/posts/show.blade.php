@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-8">
-        <p class="lead">{{ $post->body }}</p>
+        <p class="lead">{!! $post->body !!}</p>
       
         <hr>
         

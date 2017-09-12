@@ -16,7 +16,7 @@
           <h1>{{ substr($post->title, 0, 50) }} {{ strlen($post->title) > 50 ? '...' : ''}}</h1>
           <h5>Published: {{ date('M j, Y', strtotime($post->created_at)) }}</h5>
         
-          <p>{{ substr($post->body, 0, 250) }} {{ strlen($post->body) > 50 ? '...' : '' }}</p>
+          <p>{{ substr(strip_tags($post->body), 0, 250) }} {{ strlen(strip_tags($post->body)) > 50 ? '...' : '' }}</p>
         
           <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read more</a>
           <hr>
