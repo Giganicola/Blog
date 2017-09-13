@@ -4,10 +4,13 @@
 
 @section('content')
 
-  <h1>{{ $post->title }}</h1>
-
   <div class="row">
     <div class="col-md-8">
+      
+        <img src="{{ asset('images/'. $post->image) }}" alt="{{ $post->image }}">  
+      
+        <h1>{{ $post->title }}</h1>
+      
         <p class="lead">{!! $post->body !!}</p>
       
         <hr>

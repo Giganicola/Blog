@@ -147,7 +147,16 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
+        /*
+         * Html Purifier ...
+         */
         Mews\Purifier\PurifierServiceProvider::class,
+        
+        /*
+         * Image intervention ...
+         */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -218,7 +227,11 @@ return [
          * Purifier for WYSIWYG HTML editor ...
          */
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
-
+        
+         /*
+         * Image intervention ...
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -22,7 +22,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Create new post</h1>
             <hr>
-            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '')) !!}
+            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true)) !!}
                 {{ Form::label('title', 'Title:') }}
                 {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => 255)) }}
                 <br>
@@ -48,7 +48,10 @@
                     @endforeach
                   
                 </select>          
-          
+            
+                {{ Form::label('featured_image', 'Upload featured image:', ['class' => 'form-spacing-top']) }}
+                {{ Form::file('featured_image') }}            
+
                 <br><br>
                 {{ Form::label('body', 'Post body:') }}
                 {{ Form::textarea('body', null, array('class' => 'form-control')) }}          
